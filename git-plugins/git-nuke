@@ -1,0 +1,44 @@
+function _print_git_nuke_help() {
+	echo "help"
+}
+
+while test $# -gt 0; do
+	case "$1" in
+		-h)
+			_print_git_nuke_help
+			exit 0
+			;;
+		-a|--all)
+			include_ignored=true
+			;;
+		*)
+			echo "Unrecognized option: $1"
+			exit 1
+			;;
+	esac
+	shift
+done
+
+read -p "This operation is destructive. Do you want to continue [Y/N]? " input
+if [[ ! $input =~ ^[yY].*$ ]]; then 
+	echo "Preventing thermo-nuclear winter..."
+	exit 1
+fi
+
+current_dir=$(pwd)
+git_root=$(git rev-parse --show-toplevel)
+changed_directories=false
+if [[ $current_dir != $git_root ]]; then
+	changed_directories=true
+	pushd "$git_root"
+fi
+clean_opts="$([ "$include_ignored" = true ] && echo "-fd" || echo "-fdX")"
+echo "$clean_opts"
+git submodule foreach --recursive git clean "$clean_opts" 
+git submodule foreach --recursive git checkout -f --
+git submodule update --init --recursive
+git clean "$clean_opts"
+git checkout -f --
+if [[ $changed_directories = true ]]; then
+	popd
+fi

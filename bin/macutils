@@ -1,0 +1,207 @@
+#!/bin/bash
+
+#################################################
+# Mac Utils
+# Author: Hunter Lang
+# Bash script to control certain aspects on a mac:
+# 	Add a dock separator
+# 	Perform a CPU and Disk Full Load
+# 	Enable / Disable Spotlight
+# 	Enable / Disable Dashboard
+
+#################################################
+
+#################################################
+# Output for help and usage cases
+#################################################
+
+USAGE="Usage: macutils <switch> [option]\n\tType macutils -h for more information."
+HELP="\n----------MacUtils Help----------\n\n\
+Invocation Pattern:\n\
+	\tmacutils <switch> [option]\n\n\
+Switches:\n\
+	\t-a: Add a dock separator. Requires no option argument.\n\n\
+	\t-d: Enable or disable the Mac OSX Dashboard.\n\
+		\t\tenable:\t\t\tEnables the Dashboard.\n\
+		\t\tdisable:\t\tDisables the Dashboard.\n\n\
+	\t-f: Simulates a full load on the CPU and I/O Controller. Kill with -k. Requires no option argument.\n\n\
+	\t-h: Displays this help text. Requires not option argument.\n\n\
+	\t-k: Kills all dd commands created by full load simulation (-f). WARNING: THIS WILL STOP ALL dd CURRENTLY RUNNING!\n\n 
+	\t-s: Enables or disables certain Mac OSX Spotlight features.\n\
+		\t\tfulldisable:\t\tDisables both the Spotlight service AND hides the icon.\n\
+		\t\tfullenable:\t\tEnables both the Spotlight service AND shows the icon.\n\
+		\t\thideicon:\t\tJust hides the Spotlight icon. Service is untouched.\n\
+		\t\tshowicon:\t\tJust shows the Spotlight icon. Service is untouched.\n\
+		\t\tservicedisable:\t\tDisables the Spotlight service. Icon is untouched.\n\
+		\t\tserviceenable:\t\tEnables the Spotlight service. Icon is untouched.\n\
+	\t-r: Renames a set of files and updates the timestamp. Useful for organizing a folder full of items.\n\
+		\t\t<prefix>:\t\tThe renaming prefix used for all the files\n\
+	\t-t: Hides or shows the iTerm2 dock icon\n\
+		\t\tshow:\t\tShows the iTerm2 dock icon\n\
+		\t\thide:\t\tHides the iTerm2 dock icon\n\n\
+	\t-p: Disables the ApplePersistence (relaunch every thing all the time)\n\n"
+
+
+#################################################
+# Exit codes
+#################################################
+
+EXIT_NORMAL=0
+EXIT_INVALID_ARGUMENTS=1
+
+#################################################
+# Base argument check
+#################################################
+if [[ $# -lt 1 ]]; then
+	echo -e $USAGE
+	exit $EXIT_INVALID_ARGUMENTS
+fi
+
+#################################################
+# Function Definitions
+#################################################
+
+function addDockSeparator()
+{
+	defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+	killall Dock
+}
+
+function fullLoad()
+{
+	dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null &
+}
+
+function enableDashboard()
+{
+	LOWER_ARG=$(echo $1 | tr '[:upper:]' '[:lower:]')
+	if [[ "$LOWER_ARG" = "disable" ]]; then
+		defaults write com.apple.dashboard mcx-disabled -boolean YES
+
+	elif [[ "$LOWER_ARG" = "enable" ]]; then
+		defaults write com.apple.dashboard mcx-disabled -boolean NO
+
+	else
+		echo -e $USAGE
+		exit $EXIT_INVALID_ARGUMENTS
+	fi
+
+	killall Dock
+}
+
+function spotlight()
+{
+	LOWER_ARG=$(echo $1 | tr '[:upper:]' '[:lower:]')
+	if [[ "$LOWER_ARG" = "fulldisable" ]]; then
+		sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
+		sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+
+	elif [[ "$LOWER_ARG" = "hideicon" ]]; then
+		sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+
+	elif [[ "$LOWER_ARG" = "servicedisable" ]]; then
+		sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
+
+	elif [[ "$LOWER_ARG" = "fullenable" ]]; then
+		sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
+		sudo chmod 755 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+
+	elif [[ "$LOWER_ARG" = "showicon" ]]; then
+		sudo chmod 755 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+
+	elif [[ "$LOWER_ARG" = "serviceenable" ]]; then
+		sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
+
+	else
+		echo -e $USAGE
+		exit $EXIT_INVALID_ARGUMENTS
+	fi
+
+	killall SystemUIServer
+}
+
+function stopFullLoad()
+{
+	ps -ef | grep dd | awk '{print $2}' | xargs kill
+}
+
+function renameFiles()
+{
+	echo "Args: $@"
+	DIVIDER="-"
+	COUNT=1
+	NAME=""
+	FILLER=""
+	IFS='
+'
+	if [[ $# -ne 2 ]]; then
+		echo $"$0: Invalid amount of arguments!"
+		echo -e $USAGE
+		exit $EXIT_INVALID_ARGUMENTS
+	fi
+
+	for filename in $(ls); do
+		FILE_SUFFIX=$(echo "${filename##*.}" | tr '[:upper:]' '[:lower:]')
+		if [[ COUNT -ge 10000 ]]; then
+			echo "Too many files to rename (> 10000)!"
+			exit 1
+		fi
+		NAME="$2$DIVIDER$(printf "%04d" $COUNT).$FILE_SUFFIX"
+		mv $filename $NAME
+		COUNT=$(($COUNT + 1))
+	done
+}
+
+function hideiTermIcon()
+{
+	LOWER_ARG=$(echo $1 | tr '[:upper:]' '[:lower:]')
+
+	if [[ "$LOWER_ARG" = "hide" ]]; then
+		/usr/libexec/PlistBuddy -c 'Add :LSUIElement bool true' /Applications/iTerm.app/Contents/Info.plist
+
+	elif [[ "$LOWER_ARG" = "show" ]]; then
+		/usr/libexec/PlistBuddy -c 'Delete :LSUIElement' /Applications/iTerm.app/Contents/Info.plist
+
+	else
+		echo -e $USAGE
+		exit $EXIT_INVALID_ARGUMENTS
+	fi
+	killall iTerm
+}
+
+function disableApplePersistence()
+{
+	sudo defaults write -g ApplePersistence -bool no
+}
+
+#################################################
+# Get the options switches and execute
+#################################################
+
+while getopts ":ad:fs:hkr:t:p" OPTIONS; do
+	case "$OPTIONS" in
+		a)	addDockSeparator;;
+
+		d)	enableDashboard $OPTARG;;
+
+		f)	fullLoad;;
+
+		s)  spotlight $OPTARG;;
+			
+		k)	stopFullLoad;;
+
+		# Pass all the arguments to rename files and it will be handled there
+		# This is because getopts cannot handle multiple arguments for one flag
+		r)  renameFiles $@;;
+
+		t)	hideiTermIcon $OPTARG;;
+
+		p)  disableApplePersistence;;
+
+		h)	echo -e $HELP;;
+
+	   \?) 	echo -e "$0: Unknown argument"
+			echo -e $USAGE
+			exit 1;;
+	esac
+done

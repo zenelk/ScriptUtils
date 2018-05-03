@@ -1,0 +1,10 @@
+#!/usr/bin/python
+
+import sys
+import zgit_lib as zgit
+
+def main(argv):
+	arguments_parser = zgit.commands.ArgumentsParser()
+
+if __name__ == "__main__":
+	exit(main(sys.argv))

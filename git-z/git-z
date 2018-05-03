@@ -1,0 +1,77 @@
+#!/bin/bash
+
+function get_src_dir() {
+	SOURCE="${BASH_SOURCE[0]}"
+	while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+		DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+		SOURCE="$(readlink "$SOURCE")"
+		[[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+	done
+	echo "$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+}
+
+SRC_DIR="$(get_src_dir)"
+source "$SRC_DIR/misc/global_constants.sh"
+source "$SRC_DIR/misc/exit_codes.sh"
+
+function _zgit_print_help() {
+	# function_names="$(declare -f | grep -e "^_zgit_.*" | awk {print \$1})"
+	echo "\
+zgit usage: 'zgit <command> [args]'
+-------- Available Commands --------
+$all_commands
+"
+}
+
+function _zgit_is_in_git_dir() {
+	if [ -d .git ]; then
+		return true
+	else
+		git_dir="$(git rev-parse --git-dir 2> /dev/null)"
+		if [ -z git_dir ]; then
+			return false
+		else
+			return true
+		fi
+	fi
+}
+
+# if [ $# -lt 2 ]; then
+# 	_zgit_print_help
+# 	exit $EXIT_CODE_NUM_OF_ARGUMENTS
+# fi
+# if [ ! _zgit_is_in_git_dir ]; then
+# 	echo "Not in a valid git working directory!"
+# 	exit $EXIT_CODE_NOT_GIT_DIR
+# fi
+
+config="$(cat "$CONFIG_PATH")"
+
+commands_path="$(echo $config | jq --raw-output ".$COMMANDS_PATH_KEY")"
+commands_glob="$(echo $config | jq --raw-output ".$COMMANDS_PATTERN_KEY")"
+
+for file in "$(find -E "$commands_path" -regex "$commands_glob")"; do
+	echo "$file"
+done
+
+
+
+# cmd="${1,,}"
+# shift
+# case "$cmd" in
+# 	"s", "start", "-s", "--start")
+# 		_zgit_start "$@"
+# 		;;
+# 	"c", "checkout", "-c", "--checkout")
+# 		_zgit_checkout "$@"
+# 		;;
+# 	"r", "register", "-r", "--register")
+# 		_zgit_register "$@"
+# 		;;
+# 	*)
+# 		echo "'$cmd' is not a valid command!"
+# 		_zgit_print_help
+# 		exit $EXIT_CODE_INVALID_COMMAND
+# 		;;
+# esac
+# exit 0

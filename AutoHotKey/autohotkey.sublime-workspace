@@ -1,0 +1,313 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Nat",
+				"NATIVE_DLL_API"
+			],
+			[
+				"WinMini",
+				"WinMinimize"
+			],
+			[
+				"ah",
+				"ahk_class"
+			],
+			[
+				"add",
+				"add_expression"
+			],
+			[
+				"ca",
+				"calc_string"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/AutoHotkey/AutoHotkey.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/AutoHotkey/AutoHotkey.sublime-build",
+					""
+				],
+				[
+					"Packages/AutoHotkey/AutoHotkey.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/AutoHotkey/AutoHotkey.sublime-build",
+				"Run"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 104.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 120.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Zenel/Git/sdk-win/RobotWindowsLibrary/OvalCompiler/CompilerSource/oval.y",
+		"/C/Users/Zenel/Git/spherounitydevproject/ProjectSettings/ProjectVersion.txt",
+		"/C/Users/Zenel/Git/oval/OVM/OVM/platform_ovm.h",
+		"/C/Users/Zenel/Git/sdk-android/RobotLibrary/OvalCompiler/OvalCompiler/CompilerSource/OvalCompiler.h",
+		"/C/Users/Zenel/Git/sdk-android/RobotLibrary/OvalCompiler/OvalCompiler/CompilerSource/CrossPlatform.h",
+		"/C/Users/Zenel/Git/sdk-android/RobotLibrary/OvalCompiler/OvalCompiler/UniversalWindows/NativeDll/NativeDllAPI.h",
+		"/C/Users/Zenel/Git/oval/OvalLanguage/Oval/flex-bison/OvalCompilerSettings.cpp",
+		"/C/Users/Zenel/Git/oval/OVM/OVM/ovmlanguage.h",
+		"/C/Users/Zenel/Git/oval/Old/OVM/OVM/ovmzip.c",
+		"/C/Users/Zenel/Git/oval/Old/OVM/OVM/ovmzip.h",
+		"/C/Users/Zenel/Git/oval/CompilerSource/oval.y",
+		"/C/Users/Zenel/Git/oval/Old/OVM/OVM/platform_ovm.h",
+		"/C/Users/Zenel/Git/oval/Old/OVM/OVM/ovmlanguage.h",
+		"/C/Users/Zenel/Dropbox/Programming/Scripts/AutoHotKey/GitBash.ahk",
+		"/C/Users/Zenel/Desktop/test.oval",
+		"/C/Users/Zenel/Git/oval/Not sorted/OvalCompilerBridge.cpp",
+		"/C/Users/Zenel/Git/oval/Old/OvalCompilerDll/OvalCompilerDll/OvalCompilerDll.cpp",
+		"/C/Users/Zenel/Git/oval/Old/OvalCompilerDll/OvalCompilerDll/OvalCompilerDll.h",
+		"/C/Users/Zenel/Git/sdk-win/.gitignore",
+		"/C/Users/Zenel/Git/oval/UniversalWindows/NativeDll/dllmain.cpp",
+		"/C/Users/Zenel/Git/oval/OvalLanguage/Oval/main.cpp",
+		"/C/Users/Zenel/Git/oval/SplitCompiler/CompilerSource/OvalCompilerBridge.cpp",
+		"/C/Users/Zenel/Git/oval/OvalLanguage/Oval/OvalCompiler.cpp",
+		"/C/Users/Zenel/.zshrc",
+		"/C/Users/Zenel/Dropbox/Programming/Scripts/AutoHotKey/Lock.ahk",
+		"/C/Users/Zenel/Dropbox/Programming/Scripts/AutoHotKey/SwapAltAndWin.ahk",
+		"/C/Users/Zenel/Dropbox/Programming/Scripts/AutoHotKey/DisableWinSpace.ahk",
+		"/C/Users/Zenel/Dropbox/Programming/Scripts/zrc/Modules/git.zrc_module",
+		"/C/msys64/etc/nsswitch.conf",
+		"/C/Users/Zenel/Dropbox/Programming/Scripts/AutoHotKey/RunAndroidMonitor.ahk",
+		"/C/Users/Zenel/Dropbox/Programming/Scripts/AutoHotKey/CapsLockWinSwitch.ahk",
+		"/C/Users/Zenel/Dropbox/Programming/MSYSZSHInstallInstructions.txt",
+		"/C/Users/Zenel/Dropbox/Programming/Scripts/AutoHotKey/MSYS2.ahk",
+		"/C/Users/Zenel/Dropbox/Programming/Scripts/zrc/Modules/configure_zsh.zrc_module",
+		"/C/Users/Zenel/.bashrc",
+		"/C/msys64/etc/fstab",
+		"/C/Users/Zenel/Dropbox/Programming/Scripts/zrc/zrc.sh",
+		"/C/Users/Zenel/Dropbox/Programming/Scripts/zrc/refresh_windows_modules.bat",
+		"/C/msys64/etc/zsh/zprofile",
+		"/C/msys64/mingw32_shell.bat",
+		"/C/msys64/mingw64_shell.bat",
+		"/C/msys64/msys2_shell.bat",
+		"/C/msys64/etc/bash.bashrc",
+		"/C/msys64/etc/profile",
+		"/C/Users/Zenel/Downloads/zsh-5.2/INSTALL",
+		"/C/Users/Zenel/Git/sphero/Assets/Plugins/Android/AndroidManifest.xml",
+		"/C/Users/Zenel/Desktop/dp.txt",
+		"/C/Users/Zenel/Git/oval/.gitignore",
+		"/C/Users/Zenel/Dropbox/Programming/Scripts/zrc/refresh_windows_modules.sh",
+		"/C/Users/Zenel/Desktop/sph.txt",
+		"/C/Users/Zenel/Git/sphero/Temp/StagingArea/AndroidManifest.xml",
+		"/C/Users/Zenel/Git/sphero/Assets/Plugins/SpheroVerse/AndroidManifest.xml",
+		"/C/Users/Zenel/Git/sphero/Assets/Plugins/SpheroVerse/bin/AndroidManifest.xml",
+		"/C/Users/Zenel/Git/sphero/Assets/Plugins/Sphero/Native/Android/AndroidManifest.xml",
+		"/C/Users/Zenel/Git/spherounitydevproject/Assets/Plugins/Android/AndroidManifest.xml",
+		"/C/Users/Zenel/Dropbox/Programming/Scripts/checksum.sh",
+		"/C/Users/Zenel/Desktop/countbytes.sh",
+		"/C/Users/Zenel/Desktop/unique_bytes.txt",
+		"/C/Users/Zenel/Desktop/inputbytes.txt",
+		"/C/Users/Zenel/Dropbox/Programming/Scripts/zrc/Modules/windows_path.zrc_module",
+		"/C/Users/Zenel/Git/ar-sdk-native/AREngine/AREngineiOS.h",
+		"/C/Users/Zenel/Git/cppcoresdk/.gitignore",
+		"/C/Users/Zenel/Dropbox/Programming/Scripts/zrc/Modules/android_logcat.zrc_module",
+		"/C/Users/Zenel/.zrcmodules/windows_path.zrc_module",
+		"/C/Users/Zenel/Dropbox/Keys/ProductKeys.txt",
+		"/C/Users/Zenel/.bash_profile",
+		"/C/Users/Zenel/Dropbox/Programming/VS2015 Templates/Interface.cs",
+		"/C/Users/Zenel/Dropbox/Programming/VS2015 Templates/Class.cs"
+	],
+	"find":
+	{
+		"height": 22.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"8",
+			"HOME",
+			"(\\.zrcmodules\\\\.*\\.zrc_module) %",
+			"zrc_module",
+			" ",
+			".*: ",
+			"-",
+			"modifi",
+			"-",
+			"6E",
+			"-",
+			"E5",
+			" ",
+			"-",
+			".*raw=FF-F[FE]-",
+			".*firmware bridge.*\\n",
+			".*Native received notification.*\\n",
+			".*\\[OBX:LOWL\\].*",
+			",$",
+			"\\(\\)",
+			"(_.*)",
+			"_soulAttributeUpdatedInvoker",
+			"(_.*)",
+			"() ",
+			"public",
+			"public event SoulReadFromPersistenceHandler SoulReadFromPersistence\n{\n    add { _soulReadFromPersistenceInvoker += value; }\n    remove { _soulReadFromPersistenceInvoker -= value; }\n}\n\npublic event SoulWrittenToPersistenceHandler SoulWrittenToPersistence\n{\n    add { _soulWrittenToPersistenceInvoker += value; }\n    remove { _soulWrittenToPersistenceInvoker -= value; }\n}\n\npublic event SoulModifiersUpdatedHandler SoulModifiersUpdated\n{\n    add { _soulModifiersWrittenInvoker += value; }\n    remove { _soulModifiersWrittenInvoker -= value; }\n}\n\npublic event SoulResetHandler SoulReset\n{\n    add { _soulResetInvoker += value; }\n    remove { _soulResetInvoker -= value; }\n}\n\npublic event SoulConsumableBoughtHandler SoulConsumableBought\n{\n    add { _soulConsumableBoughtInvoker += value; }\n    remove { _soulConsumableBoughtInvoker -= value; }\n}\n\npublic event SoulConsumableUsedHandler SoulConsumableUsed\n{\n    add { _soulConsumableUsedInvoker += value; }\n    remove { _soulConsumableUsedInvoker -= value; }\n}\n\npublic event SoulCoresUpdatedHandler SoulCoresUpdated\n{\n    add { _soulCoresUpdatedInvoker += value; }\n    remove { _soulCoresUpdatedInvoker -= value; }\n}\n\npublic event SoulBoostStartedHandler SoulBoostStarted\n{\n    add { _soulBoostStartedInvoker += value; }\n    remove { _soulBoostStartedInvoker -= value; }\n}\n\npublic event SoulBoostStoppedHandler SoulBoostStopped\n{\n    add { _soulBoostStoppedInvoker += value; }\n    remove { _soulBoostStoppedInvoker -= value; }\n}\n\npublic event SoulBoostUpdatedHandler SoulBoostUpdated\n{\n    add { _soulBoostUpdatedInvoker += value; }\n    remove { _soulBoostUpdatedInvoker -= value; }\n}\n\npublic event SoulExperienceUpdatedHandler SoulExperienceUpdated\n{\n    add { _soulExperienceUpdatedInvoker += value; }\n    remove { _soulExperienceUpdatedInvoker -= value; }\n}\n\npublic event SoulLevelUpdatedHandler SoulLevelUpdated\n{\n    add { _soulLevelUpdatedInvoker += value; }\n    remove { _soulLevelUpdatedInvoker -= value; }\n}\n\npublic event SoulAttributeUpdatedHandler SoulAttributeUpdated\n{\n    add { _soulAttributeUpdatedInvoker += value; }\n    remove { _soulAttributeUpdatedInvoker -= value; }\n}",
+			"public",
+			"{\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"",
+			" ",
+			"",
+			"\\n",
+			" ",
+			"",
+			"\\1 \\1",
+			"\\1\\1"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 281.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "autohotkey.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 300.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

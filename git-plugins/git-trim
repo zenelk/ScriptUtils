@@ -1,0 +1,62 @@
+OPT_TAGS="tags"
+OPT_BRANCHES="branches"
+
+if [[ $# != 1 ]]; then
+	echo "Wrong number of arguments. Expected: command."
+fi
+
+cmd="$1"
+
+function _trim_tags() {
+	for tag in $(git tag -l); do
+		echo "Delete tag $tag? [y/n]"
+		read delete
+		if [[ "$delete" == "y" ]]; then
+			git tag -d "$tag"
+			git push origin ":$tag"
+		else
+			echo "Leaving tag $tag"
+		fi
+	done
+}
+
+function _trim_branches() {
+	previous_ifs="$IFS"
+	IFS='
+'
+	for line in $(git branch -r --merged develop); do
+		IFS=' '
+		branchArray=($line)
+		branch=${branchArray[0]}
+		if [[ "$branch" == *master* || "$branch" == *develop* || "$branch" == *HEAD* ]]; then 
+			echo "You cannot delete $branch with this tool. Why would you though?"
+			continue
+		fi 
+		branch="$(echo "$branch" | sed 's/origin\///g')"
+		echo "Do you want to delete branch: \"$branch\"?"
+		read confirm
+		if [[ "$confirm" == "y" ]]; then
+			git branch -D "$branch"
+			git push origin ":refs/heads/$branch"
+		else
+			echo "Leaving branch $branch"
+		fi
+	done
+	IFS="$previous_ifs"
+}
+
+case "$option" in
+	"$OPT_TAGS")
+		_trim_tags $args
+		;;
+	"$OPT_BRANCHES")
+		_trim_branches $args
+		;;
+	"$OPT_HELP")
+		_print_help $args
+		;;
+	*)
+		echo "Invalid option '$option'. See 'git-trim help' for details."
+		exit 1
+		;;
+esac

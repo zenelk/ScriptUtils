@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#################################################
+# Variable parameter logcat script
+#################################################
+
+echo "Using Params: $@"
+adb logcat "$@" | ADBLogcat.py
+
+# ADB Logging
+# logcat() {
+#     adb logcat | ADBLogcat.py "$@"
+# }
+
+# logcate() {
+#     adb logcat -s "*":e | ADBLogcat.py "$@"
+# }
+
+# logcatd() {
+#     adb logcat -s "*":d | ADBLogcat.py "$@"
+# }
